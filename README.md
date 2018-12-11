@@ -36,13 +36,19 @@ Below you will find links to the different things presented during the workshop.
 * [L1 Notebook](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/L1_unsupervised_ml.html) static (html)
 * [L1 Notebook](https://www.kaggle.com/danielhain/sdc-workshop-2018-winter-l1-unsupervised-ml) dynamic (executable on Kaggle)
 
+## L1.5: Natural Language Processing
+* [L1.5 Notebook](http://nbviewer.jupyter.org/github/daniel-hain/SDC_ML_intro_2018/blob/master/notebooks/L1.5_intro_nlp.ipynb) static (executed Jupyter Notebook on NBViewer)
+* [L1.5 Notebook](https://www.kaggle.com/romanj86/intro-natural-language-processing) dynamic (executable on Kaggle)
+
+
 ## L2: Supervised ML
 
 * [L2 Notebook](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/L2_supervised_ml.html) static (html)
 * [L2 Notebook](https://www.kaggle.com/danielhain/sdc-workshop-2018-winter-l2-supervised-ml) dynamic (executable on Kaggle)
 
 ## Bonus: A wine classification case study (If time pertmits)
-* [Wine Case study](http://nbviewer.jupyter.org/github/SDS-AAU/M1-2018/blob/master/A_quick_python_modelling_pipeline.ipynb)
+* [Wine Case study](http://nbviewer.jupyter.org/github/SDS-AAU/M1-2018/blob/master/A_quick_python_modelling_pipeline.ipynb)static (executed Jupyter Notebook on NBViewer)
+* [Wine Case study](https://www.kaggle.com/romanj86/predicting-italian-wines)dynamic (executable on Kaggle)
 
 ---
 

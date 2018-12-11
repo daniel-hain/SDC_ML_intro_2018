@@ -34,12 +34,12 @@ Below you will find links to the different things presented during the workshop.
 ## L1: Unsupervised ML
 
 * [L1 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_7_unsupervised_ml.html) static (html)
-* [L1 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_7_unsupervised_ml.html) dynamic (executable)
+* [L1 Notebook](https://www.kaggle.com/danielhain/sdc-workshop-2018-winter-l1-unsupervised-ml) dynamic (executable on Kaggle)
 
 ## L2: Supervised ML
 
-* [L2 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_8_supervised_ml.html) static (html)
-* [L2 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_8_supervised_ml.html) dynamic (executable)
+* [L2 Notebook](hhttps://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/L2_supervised_ml.html) static (html)
+* [L2 Notebook](https://www.kaggle.com/danielhain/sdc-workshop-2018-winter-l2-supervised-ml) dynamic (executable on Kaggle)
 
 ## Bonus: A wine classification case study (If time pertmits)
 * [Wine Case study](http://nbviewer.jupyter.org/github/SDS-AAU/M1-2018/blob/master/A_quick_python_modelling_pipeline.ipynb)

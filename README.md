@@ -47,8 +47,8 @@ Below you will find links to the different things presented during the workshop.
 * [L2 Notebook](https://www.kaggle.com/danielhain/sdc-workshop-2018-winter-l2-supervised-ml) dynamic (executable on Kaggle)
 
 ## Bonus: A wine classification case study (If time pertmits)
-* [Wine Case study](http://nbviewer.jupyter.org/github/SDS-AAU/M1-2018/blob/master/A_quick_python_modelling_pipeline.ipynb)static (executed Jupyter Notebook on NBViewer)
-* [Wine Case study](https://www.kaggle.com/romanj86/predicting-italian-wines)dynamic (executable on Kaggle)
+* [Wine Case study](http://nbviewer.jupyter.org/github/SDS-AAU/M1-2018/blob/master/A_quick_python_modelling_pipeline.ipynb) static (executed Jupyter Notebook on NBViewer)
+* [Wine Case study](https://www.kaggle.com/romanj86/predicting-italian-wines) dynamic (executable on Kaggle)
 
 ---
 

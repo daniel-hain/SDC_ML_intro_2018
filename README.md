@@ -21,7 +21,7 @@ Sure, we can only do so much in 3 days, and therefore we tried to find a good ba
 
 Hopefully, this will give you a good foundation or at least starting point to learn more. Today, it is really easy to find excellent resources and get skilled at sophistic analytical techniques. But, you need to know what to look for and how all the different things out there relate to each other. 
 
-![kdn](img/kdnuggets.jpg)
+![kdn](media/kdnuggets.jpg)
 
 While for several reasons – mostly path dependancy – the innovation studies (and general social science) community are relying on expensive proprietory packages (e.g. SPSS, Stata, SAS or EViews), the people that work with *Big Data* analytics are working with R and/or Python. We decided not to focus on just one language but will present you both so you can decide which one you find most approachable.
 

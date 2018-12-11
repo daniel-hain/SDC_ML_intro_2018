@@ -29,6 +29,23 @@ Below you will find links to the different things presented during the workshop.
 
 ---
 
+# Notebooks
+
+## L1: Unsupervised ML
+
+* [L1 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_7_unsupervised_ml.html) static (html)
+* [L1 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_7_unsupervised_ml.html) dynamic (executable)
+
+## L2: Supervised ML
+
+* [L2 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_8_supervised_ml.html) static (html)
+* [L2 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_8_supervised_ml.html) dynamic (executable)
+
+## Bonus: A wine classification case study (If time pertmits)
+* [Wine Case study](http://nbviewer.jupyter.org/github/SDS-AAU/M1-2018/blob/master/A_quick_python_modelling_pipeline.ipynb)
+
+---
+
 # Useful resources
 
 ## Bibliometrics
@@ -55,43 +72,23 @@ Similar to datacamp. Python focused. Also more advanced courses on data engineer
 [Open Data Science Masters Curriculum](http://datasciencemasters.org/)
 Collection of free online resources on all kinds of Data Science topics.
 
-
 [Data and scripts from the ML A-Z course from Udemy](https://www.superdatascience.com/machine-learning/)
 R and Python scripts from the course including the course data. The course can be found on Udemy and is usually available for around 12USD.
 
 
 ## Software
 
-[Installing R on your machine](https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu/)
-
-[Installing the RStudio IDE on your machine](https://www.rstudio.com/products/rstudio/download/#download)
-
-[Installing Python on Windows](https://www.datacamp.com/community/tutorials/installing-anaconda-windows)
-
-[Installing Python on Mac](https://www.datacamp.com/community/tutorials/installing-anaconda-mac-os-x)
-
-[Network analysis and visualization software](https://gephi.org/)
-
+* [Installing R on your machine](https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu/)
+* [Installing the RStudio IDE on your machine](https://www.rstudio.com/products/rstudio/download/#download)
+* [Installing Python on Windows](https://www.datacamp.com/community/tutorials/installing-anaconda-windows)
+* [Installing Python on Mac](https://www.datacamp.com/community/tutorials/installing-anaconda-mac-os-x)
+* [Network analysis and visualization software](https://gephi.org/)
 
 ## Help
 
-[Stackoverflow](https://stackoverflow.com): Programming help & advice forum
+* [Stackoverflow](https://stackoverflow.com): Programming help & advice forum
 
 ## Others
 
-[Informative podcast about professional analytics](https://www.datacamp.com/community/podcast)
-
-
-[R-Bloggers](https://www.r-bloggers.com/):R news and tutorials
-
-## M1 - 7 : Unsupervised ML
-
-[M1-7 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_7_unsupervised_ml.html)
-
-
-## M1 - 8 : Supervised ML
-
-[M1-8 Notebook](https://rawgit.com/SDS-AAU/M1-2018/master/M1_8_supervised_ml.html)
-
-## M1 - 10 : A wine classification case study
-[M1 - 10 Notebook](http://nbviewer.jupyter.org/github/SDS-AAU/M1-2018/blob/master/A_quick_python_modelling_pipeline.ipynb)
+* [Informative podcast about professional analytics](https://www.datacamp.com/community/podcast)
+* [R-Bloggers](https://www.r-bloggers.com/): R news and tutorials

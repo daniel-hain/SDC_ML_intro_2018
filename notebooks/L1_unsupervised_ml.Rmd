@@ -60,11 +60,11 @@ As with any concept, machine learning may have a slightly different definition, 
 
 ### An intuitive perspective
 
-![](media/m7_super_unsuper2.png){width=750px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/media/m7_super_unsuper2.png){width=750px}
 
 ### A functional perspective
 
-![](media/m7_super_unsuper.png){width=750px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_super_unsuper.png){width=750px}
 
 ### Overview over types and classes of algorithms
 
@@ -107,7 +107,7 @@ The type of analysis to be performed depends on the data set formats and structu
 * **Hierarchical Multiple Factor Analysis (HMFA):** An extension of MFA in a situation where the data are organized into a hierarchical structure.
 * **Factor Analysis of Mixed Data (FAMD):** A particular case of the MFA, dedicated to analyze a data set containing both quantitative and qualitative variables.
 
-![](media/m7_dim_tech.png){width=750px}
+![]https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_dim_tech.png){width=750px}
 
 ### Principal Component Analysis (PCA)
 
@@ -122,15 +122,15 @@ The type of analysis to be performed depends on the data set formats and structu
 #### The math and intuition behind it
 The mathematics underlying it are somewhat complex, so I won't go into too much detail, but the basics of PCA are as follows: you take a dataset with many variables, and you simplify that dataset by turning your original variables into a smaller number of "Principal Components".
 
-![](media/m7_PCA1.png){width=750px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_PCA1.png){width=750px}
 
 But what are these exactly? Principal Components are the underlying structure in the data. They are the directions where there is the most variance, the directions where the data is most spread out. This means that we try to find the straight line that best spreads the data out when it is projected along it. This is the first principal component, the straight line that shows the most substantial variance in the data.
 
-![](media/m7_PCA2.png){width=750px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_PCA2.png){width=750px}
 
 Where many variables correlate with one another, they will all contribute strongly to the same principal component. Each principal component sums up a certain percentage of the total variation in the dataset. Where your initial variables are strongly correlated with one another, you will be able to approximate most of the complexity in your dataset with just a few principal components. Usually, the first principal component captures the main similarity in your data, the second the main difference.
 
-![](media/m7_PCA3.png){width=750px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_PCA3.png){width=750px}
 
 These principal components can be computed via **Eigenvalues** and **Eigenvectors**. Just like many things in life, eigenvectors, and eigenvalues come in pairs: every eigenvector has a corresponding eigenvalue. Simply put, an eigenvector is a direction, such as "vertical" or "45 degrees", while an eigenvalue is a number telling you how much variance there is in the data in that direction. The eigenvector with the highest eigenvalue is, therefore, the first principal component. The number of eigenvalues and eigenvectors that exits is equal to the number of dimensions the data set has. Consequently, we can reframe a dataset in terms of these eigenvectors and eigenvalues without changing the underlying information. 
 
@@ -329,16 +329,16 @@ K-means clustering is the most commonly used unsupervised machine learning algor
 1. Specify `k` - the number of clusters to be created.
 2. Select randomly `k` objects from the dataset as the initial cluster centers.
 
-![](media/m7_km1.png){width=500px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_km1.png){width=500px}
 
 3. Assign each observation to their closest centroid, based on the Euclidean distance between the object and the centroid.
 4. For each of the `k` clusters recompute the cluster centroid by calculating the new mean value of all the data points in the cluster.
 
-![](media/m7_km2.png){width=500px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_km2.png){width=500px}
 
 5. Iteratively minimize the total within sum of square. Repeat Step 3 and Step 4, until the centroids do not change or the maximum number of iterations is reached (`R` uses 10 as the default value for the maximum number of iterations).
 
-![](media/m7_km3.png){width=500px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_km3.png){width=500px}
 
 So, lets do that. As already mentioned, we have to upfront choose our `k`. However, there exists some guidance, for example the highest gain in "total within sum of sqares" (fast to calculate), the "siluette", as well as the "gap statistics" (hard to calculate, takes time).
 
@@ -395,16 +395,16 @@ The key operation in hierarchical agglomerative clustering is to repeatedly comb
 1. It starts by calculating the distance between every pair of observation points and store it in a distance matrix.
 2. It then puts every point in its own cluster.
 
-![](media/m7_hc1.png){width=500px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_hc1.png){width=500px}
 
 3. Then it starts merging the closest pairs of points based on the distances from the distance matrix and as a result the amount of clusters goes down by 1.
 
-![](media/m7_hc2.png){width=500px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_hc2.png){width=500px}
 
 4. Then it recomputes the distance between the new cluster and the old ones and stores them in a new distance matrix.
 5. Lastly it repeats steps 2 and 3 until all the clusters are merged into one single cluster.
 
-![](media/m7_hc3.png){width=500px}
+![](https://raw.githack.com/daniel-hain/SDC_ML_intro_2018/master/notebooks/media/m7_hc3.png){width=500px}
 
 There are several ways to measure the distance between clusters in order to decide the rules for clustering, and they are often called Linkage Methods. Some of the common linkage methods are:
 

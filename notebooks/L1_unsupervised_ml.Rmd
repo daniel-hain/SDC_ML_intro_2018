@@ -1,5 +1,5 @@
 ---
-title: 'M1-7: Unsupervised Machine Learning'
+title: 'L1: Unsupervised Machine Learning'
 author: "Daniel S. Hain (dsh@business.aau.dk)"
 date: "12/09/2018"
 output:
@@ -13,6 +13,7 @@ output:
 ```{r setup, include=FALSE}
 ### Generic preamble
 Sys.setenv(LANG = "en")
+
 
 ### Clean Workspace (I like to start clean)
 rm(list=ls()); graphics.off() # get rid of everything in the workspace

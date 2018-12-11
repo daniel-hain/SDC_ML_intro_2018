@@ -1,7 +1,7 @@
 ---
 title: 'L1: Unsupervised Machine Learning'
 author: "Daniel S. Hain (dsh@business.aau.dk)"
-date: "12/09/2018"
+date: "\today"
 output:
   html_document:
     df_print: paged
@@ -12,38 +12,21 @@ output:
 
 ```{r setup, include=FALSE}
 ### Generic preamble
+options("scipen" =100, "digits" = 4) # override R's tendency to use scientific notation
 Sys.setenv(LANG = "en")
-
+set.seed(1337)
 
 ### Clean Workspace (I like to start clean)
 rm(list=ls()); graphics.off() # get rid of everything in the workspace
-detachAllPackages <- function() { # Also, detach packages to avoid functions masked by others
-  basic.packages <- c("package:stats","package:graphics","package:grDevices","package:utils","package:datasets","package:methods","package:base")
-  package.list <- search()[ifelse(unlist(gregexpr("package:",search()))==1,TRUE,FALSE)]
-  package.list <- setdiff(package.list,basic.packages)
-  if (length(package.list)>0)  for (package in package.list) detach(package, character.only=TRUE)
-}
-detachAllPackages(); rm(detachAllPackages)
 
 ### Load packages  
 library(knitr) # For display of the markdown
 
 ### Knitr options
-### Knitr options
 opts_chunk$set(warning=FALSE,
                message=FALSE,
                fig.align="center"
                )
-```
-
-Some housekeeping: In case you don't have the necessary packages installed, run this script to do so.
-
-```{r}
-### Install packages if necessary
-list.of.packages <- c("devtools", "rstudioapi", "knitr", "tidyverse", "data.table", "skimr",  "factoextra", "FactoMineR", "GGally", "VIM", "mice", "reshape2")
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) install.packages(new.packages)
-rm(list.of.packages, new.packages)
 ```
 
 Load standard packages
@@ -56,7 +39,7 @@ library(data.table) # Good format to work with large datasets
 library(skimr) # Nice descriptives
 ```
 
-An executable version on kaggle can be found [HERE](https://www.kaggle.com/danielhain/sds-2018-m1-7-unsupervised-ml)
+
 
 
 # Machine Learning: Some clarifications
@@ -92,7 +75,7 @@ Sometimes, the lines are blurry, given the vast amount of algorithms and techniq
 ### Supervised ML
 
 * Concerned with labeling/classification/input-output-mapping/prediction tasks
-* Subject of the next lecture, so stay patient
+* Subject of the next session, so stay patient
 
 ### Unsupervised ML
 
@@ -124,15 +107,14 @@ The type of analysis to be performed depends on the data set formats and structu
 * **Hierarchical Multiple Factor Analysis (HMFA):** An extension of MFA in a situation where the data are organized into a hierarchical structure.
 * **Factor Analysis of Mixed Data (FAMD):** A particular case of the MFA, dedicated to analyze a data set containing both quantitative and qualitative variables.
 
-![](media/m7_dim_tech.png){width=500px}
+![](media/m7_dim_tech.png){width=750px}
 
 ### Principal Component Analysis (PCA)
 
 #### General
 
 * A popular method is principal component analysis (PCA)
-* Three goals when finding lower dimensional
-representation of features:
+* Three goals when finding lower dimensional representation of features:
      1. Find linear combination of variables to createprincipal components
      2. Maintain most variance in the data
      3. Principal components are uncorrelated (i.e.orthogonal to each other)
@@ -140,15 +122,15 @@ representation of features:
 #### The math and intuition behind it
 The mathematics underlying it are somewhat complex, so I won't go into too much detail, but the basics of PCA are as follows: you take a dataset with many variables, and you simplify that dataset by turning your original variables into a smaller number of "Principal Components".
 
-![](media/m7_PCA1.png){width=500px}
+![](media/m7_PCA1.png){width=750px}
 
 But what are these exactly? Principal Components are the underlying structure in the data. They are the directions where there is the most variance, the directions where the data is most spread out. This means that we try to find the straight line that best spreads the data out when it is projected along it. This is the first principal component, the straight line that shows the most substantial variance in the data.
 
-![](media/m7_PCA2.png){width=500px}
+![](media/m7_PCA2.png){width=750px}
 
 Where many variables correlate with one another, they will all contribute strongly to the same principal component. Each principal component sums up a certain percentage of the total variation in the dataset. Where your initial variables are strongly correlated with one another, you will be able to approximate most of the complexity in your dataset with just a few principal components. Usually, the first principal component captures the main similarity in your data, the second the main difference.
 
-![](media/m7_PCA3.png){width=500px}
+![](media/m7_PCA3.png){width=750px}
 
 These principal components can be computed via **Eigenvalues** and **Eigenvectors**. Just like many things in life, eigenvectors, and eigenvalues come in pairs: every eigenvector has a corresponding eigenvalue. Simply put, an eigenvector is a direction, such as "vertical" or "45 degrees", while an eigenvalue is a number telling you how much variance there is in the data in that direction. The eigenvector with the highest eigenvalue is, therefore, the first principal component. The number of eigenvalues and eigenvectors that exits is equal to the number of dimensions the data set has. Consequently, we can reframe a dataset in terms of these eigenvectors and eigenvalues without changing the underlying information. 
 
@@ -156,11 +138,11 @@ Note that reframing a dataset regarding a set of eigenvalues and eigenvectors do
 
 ## Case study: (Digital) Nomad Life
 
-### **O** & **S** & **E**: Load, clean and inspect
+### Load, clean and inspect
 
 Allright, lets load some data. Here, we will draw from some own work, where we explore the life of digital nomads. The paper is not written, but the preliminary work is summarized in [this presentation](https://aaudk-my.sharepoint.com/:b:/g/personal/dsh_id_aau_dk/ESeuvplEytZCuNBhKGmA4U8BOGpfbGIbilqTGdgQLA4a6A?e=UGRnvR). You probably already know the data from [NomadList](https://nomadlist.com/). Here, we look at the 2017 crawl of city data, which compiles the digital nomads ranking of cities according to a couple of dimensions. Lets take a look.
 
-Roman's web-crawld ata is always a bit messy, so we do some little cosmetics upfront.
+Roman's web-crawl ata is always a bit messy, so we do some little cosmetics upfront.
 
 
 ```{r}
@@ -213,61 +195,11 @@ ggcorr(data[vars], label = TRUE, label_size = 3, label_round = 2, label_alpha = 
 
 Even cooler, the `ggpairs` function creates you a scatterplot matrix plus all variable distributions and correlations. Before I used the package `PerformanceAnalytics` for that, but I like the ggplot-style more.
 
-```{r,fig.width=10,fig.height=10,fig.align='center'}
+```{r,fig.width=12.5,fig.height=12.5,fig.align='center'}
 ggpairs(data[,vars.desc], 
         aes(alpha = 0.3), 
         ggtheme = theme_gray())  
 ```
-
-
-#### Digression: Missing value imputation
-To remind you, component scores cannot be computed on missing features. So lets impute them. It's a good point to introduce you to some neath imputation techniques. First, the package `VIM` has some nice imputation functions, but also some nice diagnistic plots.
-
-```{r,warning=FALSE,echo=FALSE}
-library(VIM)
-```
-
-
-```{r,fig.width=10,fig.height=10,fig.align='center'}
-marginmatrix(data[,vars.desc]) # Note: Cool feature, but matrix becones just too big for many features
-
-aggr(data[,vars], 
-     col = c('navyblue','red'), 
-     numbers = TRUE, 
-     sortVars = TRUE, 
-     labels = names(data[,vars]), 
-     cex.axis = 0.5, 
-     gap = 0.5, 
-     ylab=c("Histogram of missing data","Pattern"))
-```
-
-For the real imputation, I prefer the `mice` package, which works with a neural network "under the hood". Here, every feature is sequentially predicted by all other existing features in an iterative process. Since this process involves some stochachics, I define a seed upfront for reproducible results.
-
-
-```{r,echo=FALSE,warning=FALSE}
-set.seed(1337)
-
-library(mice)
-data.mice <- mice(data = data[,vars], m = 1, maxit = 50, seed = 1337) 
-
-```
-
-Let's look at the distribution of the imputed vs. the existing features.
-
-```{r,fig.align='center'}
-densityplot(data.mice)
-```
-
-I would say, good enough. Lets take them!
-
-```{r}
-var.imp <- c("freedom_score", "peace_score", "fragile_states_index", "press_freedom_index")
-
-data.imp <- complete(data.mice, action = 1)
-data[,var.imp] <- data.imp[,var.imp]
-rm(data.mice, data.imp, var.imp)
-```
-
 
 
 ### Dimensionality reduction
@@ -278,6 +210,14 @@ To execute the PCA, we'll here use the [`FactoMineR`](http://factominer.free.fr/
 library(FactoMineR)
 library(factoextra)
 ```
+
+We realized already that we have some missing values in some obbservations. Normally, we could now do some **missing value imputation** (there are good `R` packages such as `mice` available), but for this tutorial, we skip that step, and do the lazy thing: Just delete all observations with missing values.
+
+```{r}
+data %<>%
+  drop_na()
+```
+
 
 Lets do that. Notice the `scale.unit = TRUE` argument, which you should ALWAYS use. Afterwards, we take a look at the resulting list object.
 
@@ -360,65 +300,6 @@ fviz_pca_biplot(res.pca,
 ```
 
 
-### Note: Vectorization and distances
-
-Just a sidenote (which might become more important in later lectures): The components delivered by a PCA can also be used to create distance or similarity measures between two observations. You might need to refresh a bit of your vector algebra for the different ways to crate distance measures between vectors. Here, we just will use the simple "euclidian" distance in n-dimensional space. This can be done with the base-R `dist()` function. However, the `FactoMineR` has a function `get_dist()` which I prefer, since it includes a couple of other useful distance measurs.
-
-```{r,fig.width=10,fig.height=10,fig.align='center'}
-dist.res <- get_dist(res.pca$ind$coord, method = "euclidean")
-fviz_dist(dist.res)
-```
-
-The resulting distance object can be tansformed in a distance matrix. We will also add names for the matrix dimensions.
-
-
-```{r}
-dist <- as.matrix(dist.res)
-rownames(dist) <- data %>% pull(place)
-colnames(dist) <- data %>% pull(place)
-```
-
-This matrix we could, for example, use to create a distance metwork (as we will do in M2). When continuing with "tidy" data, we would like to transform it in what we in network-jargon call a "edgelist". So, that's a classical use of the `gather()` function. However, since we have a matrix here, I will use the `melt()` function of the `reshape2` package, since it automatically tidies the names of amtrix dimensions.Notice: This is a very convenient but not the most efficient way to create distance edgelists. In case we have a very large number of entities, you might want to learn how to deal with sarse-matrices. More on that again in M2.
-
-```{r}
-# Somehow doesnt work
-# dist_el <- dist %>%
-#   as_tibble() %>%
-#   rownames_to_column(var = "Var1") %>%
-#   gather(key = Var2, value = dist, 2:nrow(.)) 
-
-# Alternative (more convenient here, but not dplyr style)
-library(reshape2)
-dist_el <- melt(dist) 
-
-dist_el %<>%
-  filter(Var1 != Var2) %>%
-  as_tibble()
-
-head(dist_el)  
-```
-
-
-Ok, lets just take a brief look which cities are most similar, and most distant in terms of their characteristics.
-
-```{r}
-dist_el %>%
-  arrange(value) %>%
-  head(10)
-
-dist_el %>%
-  arrange(desc(value)) %>%
-  head(10)
-```
-
-Sidenote: Here, we created the distance based on al components equally. Instead, one could weight the distance by the component's variance explained, that the most explanatory component gets higher weights. That would be a nice exercise. 
-
-Such distance edgelists can be extremely informative. However, we will for not not use it anymore in the analysis to come, so lets get rid of the big objects.
-
-```{r}
-rm(dist, dist_el, dist.res)
-```
-
 
 # Clustering
 
@@ -447,14 +328,20 @@ K-means clustering is the most commonly used unsupervised machine learning algor
 
 1. Specify `k` - the number of clusters to be created.
 2. Select randomly `k` objects from the dataset as the initial cluster centers.
+
 ![](media/m7_km1.png){width=500px}
+
 3. Assign each observation to their closest centroid, based on the Euclidean distance between the object and the centroid.
 4. For each of the `k` clusters recompute the cluster centroid by calculating the new mean value of all the data points in the cluster.
+
 ![](media/m7_km2.png){width=500px}
+
 5. Iteratively minimize the total within sum of square. Repeat Step 3 and Step 4, until the centroids do not change or the maximum number of iterations is reached (`R` uses 10 as the default value for the maximum number of iterations).
+
 ![](media/m7_km3.png){width=500px}
 
 So, lets do that. As already mentioned, we have to upfront choose our `k`. However, there exists some guidance, for example the highest gain in "total within sum of sqares" (fast to calculate), the "siluette", as well as the "gap statistics" (hard to calculate, takes time).
+
 
 ```{r,fig.align='center'}
 fviz_nbclust(scale(data[,vars]), 
@@ -469,7 +356,7 @@ Ok,w e here settle for 3 (executive desicion). Before we start, something weird 
 rownames(data) <- data %>% pull(place)
 ```
 
-Oflets run the algorythm.
+Lets run the algorythm.
 
 ```{r}
 km <- kmeans(scale(data[,vars]), centers = 3, nstart = 20)  
@@ -591,14 +478,14 @@ hcpc <- HCPC(res.pca,
              graph = FALSE) 
 ```
 
-```{r,,fig.width=15,fig.height=10,fig.align='center'}
+```{r,fig.width=15,fig.height=10,fig.align='center'}
 plot(hcpc, choice = "3D.map")
 ```
 
 
 To finish up, lets plot it in a map, simplest way possible.
 
-```{r}
+```{r,fig.width=15,fig.height=10}
 library(ggmap)
 mapWorld <- borders("world", colour = "gray50", fill = "gray50")
 mp <- ggplot() +   mapWorld 
@@ -622,27 +509,6 @@ Well, there are many measures to do this, perhaps the most popular one is the Du
 Furthermore, graphical inspection often helps comparing the results of different algorithms and poarameters. [Here](https://cran.r-project.org/web/packages/dendextend/vignettes/Cluster_Analysis.html) you find some advanced diagnostic visualizations for hirarchical clustering.
 
 Lastly, a clusters quality is to a large extend determined by its usefulness.
+
 * Internal Validity
 * External Validity
-
-# Your turn!
-So, why not have some fun on your own now? try to use what you learned up to now in the following extercise. [---> HERE <---](https://www.kaggle.com/danielhain/sds-2018-m1-7-unsupervised-ml-exercise-1) you will find a kaggle notebook with a fun exercise. If you prefer to run it locally, use the data [---> HERE <---](https://github.com/SDS-AAU/M1-2018/blob/master/data/vsm13.csv) instead, where you will find a dataset on Gert Hofstede's ["6-D model of national culture""](https://geerthofstede.com/culture-geert-hofstede-gert-jan-hofstede/6d-model-of-national-culture/). This popular measures of country-level culture in (by now) 6 dimensions became very popular in sociology, economics, and management science to explain cross-cultural interaction as well as frictions. a exhaustive documentation of the 2013 dataset can be found [here](https://geerthofstede.com/wp-content/uploads/2016/07/Manual-VSM-2013.pdf). It contains the following variables.
-
-* **`pdi:`**  The power distance index is defined as "the extent to which the less powerful members of organizations and institutions (like the family) accept and expect that power is distributed unequally."In this dimension, inequality and power is perceived from the followers, or the lower level. A higher degree of the Index indicates that hierarchy is clearly established and executed in society, without doubt or reason. A lower degree of the Index signifies that people question authority and attempt to distribute power.
-* **`idv:`**  This index explores the "degree to which people in a society are integrated into groups."" Individualistic societies have loose ties that often only relates an individual to his/her immediate family. They emphasize the "I" versus the "we". Its counterpart, collectivism, describes a society in which tightly-integrated relationships tie extended families and others into in-groups. These in-groups are laced with undoubted loyalty and support each other when a conflict arises with another in-group.
-* **`mas:`**  In this dimension, masculinity is defined as "a preference in society for achievement, heroism, assertiveness and material rewards for success."" Its counterpart represents "a preference for cooperation, modesty, caring for the weak and quality of life." Women in the respective societies tend to display different values. In feminine societies, they share modest and caring views equally with men. In more masculine societies, women are somewhat assertive and competitive, but notably less than men. In other words, they still recognize a gap between male and female values. This dimension is frequently viewed as taboo in highly masculine societies.
-* **`uai:`**  The uncertainty avoidance index is defined as "a society's tolerance for ambiguity," in which people embrace or avert an event of something unexpected, unknown, or away from the status quo. Societies that score a high degree in this index opt for stiff codes of behavior, guidelines, laws, and generally rely on absolute truth, or the belief that one lone truth dictates everything and people know what it is. A lower degree in this index shows more acceptance of differing thoughts or ideas. Society tends to impose fewer regulations, ambiguity is more accustomed to, and the environment is more free-flowing.
-* **`ltowvs:`** This dimension associates the connection of the past with the current and future actions/challenges. A lower degree of this index (short-term) indicates that traditions are honored and kept, while steadfastness is valued. Societies with a high degree in this index (long-term) views adaptation and circumstantial, pragmatic problem-solving as a necessity. A poor country that is short-term oriented usually has little to no economic development, while long-term oriented countries continue to develop to a point. 
-* **`ivr:`**  This dimension is essentially a measure of happiness; whether or not simple joys are fulfilled. Indulgence is defined as "a society that allows relatively free gratification of basic and natural human desires related to enjoying life and having fun." Its counterpart is defined as "a society that controls gratification of needs and regulates it by means of strict social norms. Indulgent societies believe themselves to be in control of their own life and emotions; restrained societies believe other factors dictate their life and emotions
-
-
-Ok, looks interesting. Let's do the fololwing:
-
-0. The data is not perfect. So some small upfront-munging is necessary.
-1. Gert Hofstede claims this dimensions to emasure orthogonal features of culture. That raises the question if they reasy measure different constructs. To find out, lets execute a PCA on them. How do the dimensions load? And how do countries score? Illustrate and visualize the results.
-2. Can we form meaningful "cultural clusters" among countries?
-3. Let's create a meaningful measure for "cultural distance" between countries. What do we see? Interpret.
-4. (Advanced) Does bilateral "cultural distance" or the assignment to a "cultural cluster" help us to explain other interaction between countries we might be interested in, such as trade, migration etc.? Here you will need some skills from M1-1 & 2.
-
-Have fun!
-
